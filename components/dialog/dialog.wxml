@@ -1,0 +1,5 @@
+<template name="dialog">
+	<view class="dialog-box" wx:if="{{ isShow }}">
+		<view>{{ message }}</view>
+	</view>
+</template>

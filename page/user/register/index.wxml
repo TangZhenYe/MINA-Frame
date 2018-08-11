@@ -1,0 +1,35 @@
+<!-- 公共dialog -->
+<import src="/components/dialog/dialog.wxml" />
+<template is="dialog" data="{{ ..._dialog }}"></template>
+<!-- 公共dialog -->
+
+<view class="white-b">
+	<view class="pad-lef-15 pad-rig-15">
+		<view class="per-line-30 mar-bot-15">
+			<view class="black fl font-size-14 tl width-30per">*会员名:</view>
+			<input class="fr gray-666 font-size-14 width-65per" type="text" placeholder="请输入用户名" value="{{username}}"/>
+		</view>
+		<view class="per-line-30 mar-bot-15">
+			<view class="black fl font-size-14 tl width-30per">*手机号码:</view>
+			<input class="fr gray-666 font-size-14 width-65per" type="text" placeholder="请输入手机号码" value="{{loginname}}"/>
+		</view>
+		<view class="per-line-30 mar-bot-15">
+			<view class="black fl font-size-14 tl width-30per">*输入密码:</view>
+			<input class="fr gray-666 font-size-14 width-65per" type="text" placeholder="请输入密码" value="{{password}}"/>
+		</view>
+		<view class="per-line-30 mar-bot-15 pos-relative">
+			<view class="black per-line-30 fl font-size-14 tl width-30per">*输入验证码:</view>
+			<input class="fl gray-666 font-size-14 width-30per" placeholder="" type="text" value="{{code}}"/>
+			<view catchtap='getCode' class="fr font-size-12 per-line-30 tc border-rad-5 border-1 width-30per">获取验证码</view>
+		</view>
+		<view class="per-line-30 mar-bot-15">
+			<view class="black fl tl width-30per">推荐ID:</view>
+			<input class="fr gray-666 width-65per" type="text" value="{{tuijian_id}}" placeholder="ID/名称/手机号"/>
+		</view>
+	</view>
+
+	<view class="mar-lef-15 over-hidden per-line-30 mar-rig-15 font-size-14 mar-top-50">
+		<checkbox class="fl" /><view class="fl">我已阅读并同意会员注册协议</view>
+	</view>
+	<view catchtap="register" class="yellow-b white mar-lef-15 tc mar-rig-15 per-line-40 border-rad-5">提交注册</view>
+</view>

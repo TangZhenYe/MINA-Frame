@@ -1,0 +1,213 @@
+<!-- 公共dialog -->
+<import src="/components/dialog/dialog.wxml" />
+<template is="dialog" data="{{ ..._dialog }}"></template>
+<!-- 公共dialog -->
+<view class="over-hidden types-box yellow-b-opacity z-index-9999 width-100per pos-fixed" style="top: 0; left: 0;">
+	<view wx:key="index" catchtap="changeType" wx:for="{{types}}" data-id="{{index}}" class="fl width-33per tc per-line-40 {{typesId === index ? 'active' : 'normal'}}">{{item}}</view>
+</view>
+
+<!-- 商品 -->
+<view class="bg mar-top-40 mar-bot-40 overflow-y {{ typesId === 0 ? 'show' : 'hide' }}">
+	<view class="pos-relative">
+		<image class="width-100per" src="{{ goods_obj.img_thumb || default_image }}"></image>
+		<view class="pos-absolute font-size-12 width-100per per-line-30 over-hidden red-b white {{goods_obj.is_pintuan === '0' ? 'hide': 'show'}}" style="bottom: 0; left: 0;">
+			<view class="fl pad-lef-15">拼团</view>
+			<view class="fr pad-rig-15">距结束仅剩20天20天20天20天</view>
+		</view>
+	</view>
+	
+	<view class="pad-15 white-b">
+		<view class="per-line-30 font-size-15 pos-relative">
+			{{ goods_obj.goods_name }}
+			<image src="../../../static/images/shoucang.png" class="pos-absolute" style="width: 20px; height: 20px; top: 5px; right: 30px; "></image>
+			<image src="../../../static/images/share.png" class="pos-absolute" style="width: 20px; height: 20px; top: 5px; right: 0px; "></image>
+		</view>
+		<view class="per-line-30 ellip">
+			{{ goods_obj.goods_bef }}	
+		</view>
+		<!-- normal -->
+		<view class="per-line-30">
+			<view class="fl line-through gray-666 font-size-12">原价￥111</view>
+			<view class="fl red font-bold font-size-20 mar-lef-5">￥11.11</view>
+			<view class="fr over-hidden font-size-12">
+				<view class="fl gray-666">已售</view>
+				<view class="fl red">98</view>
+				<view class="fl gray-666">件</view>
+			</view>
+		</view>
+		<!-- 砍价 -->
+		<view class="per-line-30">
+			<view class="fl line-through gray-666 font-size-12">原价￥111</view>
+			<view class="fl red font-bold font-size-20 mar-lef-5">砍价 ￥11.11</view>
+			<view class="fr over-hidden font-size-12">
+				<view class="fl gray-666">已售</view>
+				<view class="fl red">98</view>
+				<view class="fl gray-666">件</view>
+			</view>
+		</view>
+		<!-- 积分 -->
+		<view class="per-line-30">
+			<view class="fl red font-bold font-size-20">￥11.11+15积分</view>
+			<view class="fl line-through gray-666 font-size-12 mar-lef-15">原价￥111</view>
+			<view class="fr over-hidden font-size-12">
+				<view class="fl gray-666">已售</view>
+				<view class="fl red">98</view>
+				<view class="fl gray-666">件</view>
+			</view>
+		</view>
+		<!-- 拼图 -->
+		<view class="per-line-30 {{goods_obj.is_pintuan === '0' ? 'hide': 'show'}}">
+			<view class="fl red-b white font-size-12 per-line-20 mar-top-5" style="border-radius: 10px 0 0 10px; padding: 0 5px;">2人拼团价</view>
+			<view class="fl red font-bold font-size-20 mar-lef-5">￥11.11</view>
+			<view class="fl line-through gray-666 font-size-12 mar-lef-15">￥111</view>
+			<view class="fr over-hidden font-size-12">
+				<view class="fl gray-666">已售</view>
+				<view class="fl red">98</view>
+				<view class="fl gray-666">件</view>
+			</view>
+		</view>
+	</view>
+	<view class="pos-relative pad-lef-15 pad-rig-15 mar-top-10 white-b per-line-40">
+		<view class="per-line-40">规格数量选择</view>
+		<image class="pos-absolute" src="../../../static/images/arrow_right.png" style="width: 16px; height: 16px; top: 12px; right: 15px;"></image>
+	</view>
+	<!-- 拼图 -->
+	<view class="pos-relative pad-lef-15 pad-rig-15 white-b per-line-30 {{goods_obj.is_pintuan === '0' ? 'hide': 'show'}}">
+		<view class="per-line-30 ellip">支付开团邀请1人参团，人数不足自动退款</view>
+		<image class="pos-absolute" src="../../../static/images/arrow_right.png" style="width: 16px; height: 16px; top: 7px; right: 15px;"></image>
+	</view>
+	<view class="pos-relative pad-bot-15 over-hidden pad-lef-15 pad-rig-15 mar-top-10 white-b">
+		<view class="per-line-40 pos-relative border-bottom-1" style="margin-left: -15px; margin-right: -15px;">
+			<view class="pad-lef-15">全部评论</view>
+			<image src="../../../static/images/arrow_right.png" style="width: 16px; height: 16px; top: 12px; right: 15px;" class="pos-absolute"></image>
+		</view>
+		<view class="per-comment-cell pad-bot-10 border-bottom-1">
+			<view class="height-50 over-hidden">
+				<image style="width: 40px; height: 40px;" class="border-rad-50per fl mar-top-5" src="{{ default_image }}"></image>
+				<view class="fl mar-lef-5">
+					<view class="font-bold font-size-12 mar-top-5">1111</view>
+					<view class="gray-666 font-size-12">14分钟前</view>
+				</view>
+				<view class="fr per-line-50">
+					<image class="fl mar-top-15" style="width: 20px; height: 20px; " src="../../../static/images/dianzan.png"></image>
+					<view class="fl mar-lef-5">132</view>
+				</view>
+			</view>
+			<view class="mar-top-10">
+				评论内容评论内容评论内容评论内容
+				评论内容评论内容评论内容评论内容
+				评论内容评论内容评论内容评论内容
+			</view>
+		</view>
+		<view class="per-comment-cell pad-bot-10 border-bottom-1">
+			<view class="height-50 over-hidden">
+				<image style="width: 40px; height: 40px;" class="border-rad-50per fl mar-top-5" src="{{ default_image }}"></image>
+				<view class="fl mar-lef-5">
+					<view class="font-bold font-size-12 mar-top-5">1111</view>
+					<view class="gray-666 font-size-12">14分钟前</view>
+				</view>
+				<view class="fr per-line-50">
+					<image class="fl mar-top-15" style="width: 20px; height: 20px; " src="../../../static/images/dianzan.png"></image>
+					<view class="fl mar-lef-5">132</view>
+				</view>
+			</view>
+			<view class="mar-top-10">
+				评论内容评论内容评论内容评论内容
+				评论内容评论内容评论内容评论内容
+				评论内容评论内容评论内容评论内容
+			</view>
+			<view class="mar-top-10 over-hidden">
+				<image class="fl width-30per" mode="widthFix" src="{{ default_image }}"></image>
+				<image class="fl width-30per mar-lef-5per" mode="widthFix" src="{{ default_image }}"></image>
+				<image class="fl width-30per mar-lef-5per" mode="widthFix" src="{{ default_image }}"></image>
+			</view>
+		</view>
+	</view>
+	<view class="pos-relative pad-bot-15 over-hidden pad-lef-15 pad-rig-15 mar-top-10 white-b">
+		<view class="per-line-40 pos-relative border-bottom-1" style="margin-left: -15px; margin-right: -15px;">
+			<view class="pad-lef-15">商品详情</view>
+			<image src="../../../static/images/arrow_right.png" style="width: 16px; height: 16px; top: 12px; right: 15px;" class="pos-absolute"></image>
+		</view>
+		<view class="mar-top-10">
+			<image src="{{ default_image }}"></image>
+			<image src="{{ default_image }}"></image>
+		</view>
+	</view>
+</view>
+
+<!-- 商品介绍 -->
+<view class="interview-box bg mar-top-40 mar-bot-40 overflow-y {{ typesId === 1 ? 'show' : 'hide' }}">
+	<view wx:key="index" catchtap="changeInterView" data-id="{{index}}"  wx:for="{{interviewTypes}}" class="fl font-size-13 width-33per tc border-bottom-1 per-line-40 {{interviewId === index ? 'active' : 'normal'}}">{{item}}</view>
+	<!-- 商品介绍 -->
+	<view class="{{ interviewId === 0 ? 'show' : 'hide' }}">
+		<image src="{{default_image}}"></image>
+	</view>
+	<!-- 规格参数 -->
+	<view class="{{ interviewId === 1 ? 'show' : 'hide' }}">
+		<image src="{{default_image}}"></image>
+		<image src="{{default_image}}"></image>
+	</view>
+	<!-- 包装售后 -->
+	<view class="{{ interviewId === 2 ? 'show' : 'hide' }}">
+		<image src="{{default_image}}"></image>
+		<image src="{{default_image}}"></image>
+		<image src="{{default_image}}"></image>
+	</view>
+</view>
+
+<!-- 评价 -->
+<view class="bg mar-top-40 mar-bot-40 overflow-y {{ typesId === 2 ? 'show' : 'hide' }}">
+	<view class="pos-relative pad-bot-15 over-hidden pad-lef-15 pad-rig-15 mar-top-10 white-b">
+		<view class="per-comment-cell pad-bot-10 border-bottom-1">
+			<view class="height-50 over-hidden">
+				<image style="width: 40px; height: 40px;" class="border-rad-50per fl mar-top-5" src="{{ default_image }}"></image>
+				<view class="fl mar-lef-5">
+					<view class="font-bold font-size-12 mar-top-5">1111</view>
+					<view class="gray-666 font-size-12">14分钟前</view>
+				</view>
+				<view class="fr per-line-50">
+					<image class="fl mar-top-15" style="width: 20px; height: 20px; " src="../../../static/images/dianzan.png"></image>
+					<view class="fl mar-lef-5">132</view>
+				</view>
+			</view>
+			<view class="mar-top-10">
+				评论内容评论内容评论内容评论内容
+				评论内容评论内容评论内容评论内容
+				评论内容评论内容评论内容评论内容
+			</view>
+		</view>
+		<view class="per-comment-cell pad-bot-10 border-bottom-1">
+			<view class="height-50 over-hidden">
+				<image style="width: 40px; height: 40px;" class="border-rad-50per fl mar-top-5" src="{{ default_image }}"></image>
+				<view class="fl mar-lef-5">
+					<view class="font-bold font-size-12 mar-top-5">1111</view>
+					<view class="gray-666 font-size-12">14分钟前</view>
+				</view>
+				<view class="fr per-line-50">
+					<image class="fl mar-top-15" style="width: 20px; height: 20px; " src="../../../static/images/dianzan.png"></image>
+					<view class="fl mar-lef-5">132</view>
+				</view>
+			</view>
+			<view class="mar-top-10">
+				评论内容评论内容评论内容评论内容
+				评论内容评论内容评论内容评论内容
+				评论内容评论内容评论内容评论内容
+			</view>
+			<view class="mar-top-10 over-hidden">
+				<image class="fl width-30per" mode="widthFix" src="{{ default_image }}"></image>
+				<image class="fl width-30per mar-lef-5per" mode="widthFix" src="{{ default_image }}"></image>
+				<image class="fl width-30per mar-lef-5per" mode="widthFix" src="{{ default_image }}"></image>
+			</view>
+		</view>
+	</view>
+</view>
+
+
+<!-- 底部 -->
+<view class="pos-fixed tc font-size-16 per-line-40 z-index-9999 over-hidden width-100per" style="left: 0; bottom: 0;">
+	<view catchtap="goShopCart" class="fl width-20per white-b">
+		<image style="width: 20px; height: 20px; vertical-align: middle;" src="../../../static/images/cart.png"></image>
+	</view>
+	<view catchtap="addToCart" class="fl width-40per yellow-b white">加入购物车</view>
+	<view class="fl width-40per red-b white">立即购买</view>
+</view>

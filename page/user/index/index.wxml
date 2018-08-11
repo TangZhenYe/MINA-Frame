@@ -1,0 +1,9 @@
+<!-- 公共dialog -->
+<import src="/components/dialog/dialog.wxml" />
+<template is="dialog" data="{{ ..._dialog }}"></template>
+<!-- 公共dialog -->
+
+<!-- <view class="pos-absolute width-100per" style="top: 0; left: 0; bottom: 0;">
+	<view class="width-100per" style="background-image: url(../../../static/images/user_header.png); background-size: cover; background-repeat: no-repeat; height: 200px;">
+	</view>
+</view> -->

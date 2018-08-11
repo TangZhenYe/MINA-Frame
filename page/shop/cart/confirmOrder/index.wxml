@@ -1,0 +1,92 @@
+<!-- 公共dialog -->
+<import src="/components/dialog/dialog.wxml" />
+<template is="dialog" data="{{ ..._dialog }}"></template>
+<!-- 公共dialog -->
+
+<view>
+	<view class="cart_confirmOrder">
+		<view wx:if="!showSelectAddress">
+			<view catchtap="goCartAddressLists(1)">
+				<view class="tl font-size-15 pad-lef-20 pad-rig-20 pad-top-15">
+					收件人: {{ name }}wefwefwefwef
+					<span class="fr">{{ phone }}1343424234</span>
+				</view>
+				<view class="tl gray-666 font-size-15 pos-relative" style="padding: 2px 40px 2px 40px;">
+					<image class="pos-absolute" style="width: 14px; left: 17px; top: 22%;" mode="widthFix" src="../../../../static/images/location.png"></image>
+					{{ address }}fswfwejfowejfwojefoej
+					<image class="pos-absolute" style="right: 5px; width: 24px;" mode="widthFix" src="../../../../static/images/arrow_right.png"></image>
+				</view>
+			</view>
+			<image class="height-10 vertical-align border-box width-100per mar-bot-15 mar-top-15" mode="widthFix" src="../../../../static/images/border.png"></image>
+		</view>
+		<view wx:else>
+			<view style="height: 48px; padding: 13px 35px 13px 16px;" class="select-address width-100per tl gray-666 font-size-15 white-b pos-relative mar-bot-15" catchtap="goCartAddressLists(1)">
+				请选择收货地址
+				<image class="pos-absolute" style="right: 5px; bottom: 12px;" mode="widthFix" src="../../../../static/images/arrow_right.png"></image>
+			</view>
+		</view>
+		<view>
+			<view class="get-goods pad-lef-16 tl white-b per-line-42 font-size-16 gray-666">
+				您所选购的商品
+			</view>
+			<view class="white-b width-100per">
+				<view wx:key="goodsList.id" wx:for="goodsList in goodsLists" class="goods-detail height-100 border-top-1 pos-relative white-b mar-lef-16" style="padding: 8px 16px 10px 90px;">
+					<image src="{{default_image}}" class="pos-absolute" style="top: 10px; left: 0; width: 80px; height: 80px;"></image>
+					<view class="ellip tl width-50per">
+						{{ goodsList.goods_name }}dfsfsfsefse
+					</view>
+					<view class="tl red">
+						￥{{ (Number(goodsList.promote_price) === 0) ? Number(goodsList.shop_price).toFixed(2) : Number(goodsList.promote_price).toFixed(2) }}wefwef
+					</view>
+					<view class="red pos-absolute" style="top: 10px; right: 10px;">
+						x{{ goodsList.amount }}df
+					</view>
+					<view wx:if="share_grade_id && share_grade_id !== 0" class="black pos-absolute" style="right: 10px; bottom: 10px;">
+						代理折扣: sd{{ Number(goodsList.share_discount * 100).toFixed(0) }}%
+						折后价格: ￥{{ Number(goodsList.price).toFixed(2) }}sfs
+					</view>
+					<view wx:else class="black pos-absolute" style="right: 10px; bottom: 10px;">
+						积分: {{ parseInt(goodsList.give_points) }}
+					</view>
+				</view>
+				<view class="border-top-1 list gray-666">
+					<view class=" height-40 font-size-16 pad-lef-16 pad-rig-16 pad-top-10 pad-bot-10 gray-666" catchtap="openDialog">
+						<input placeholder="选填:给商家留言(45字以内)" wx:value="leaveMessage" class="tl ellip width-80per font-size-13 input-cus fl" />
+						<image class="fr" style="width: 24px; height: 24px; margin-right: -7px;" mode="widthFix" src="../../../../static/images/arrow_right.png"></image>
+					</view>
+					<view class="gray-444  height-40 font-size-16 pad-lef-16 pad-rig-16 pad-top-10 pad-bot-10">
+						<span class="fl">商品金额</span>
+						<span class="fr">￥{{ Number(total_goods_price).toFixed(2) }}</span>
+					</view>
+					<view class="gray-444  height-40 font-size-16 pad-lef-16 pad-rig-16 pad-top-10 pad-bot-10">
+						<span class="fl">运费</span>
+						<span class="fr">{{ shipping_fee }}元</span>
+					</view>
+				</view>
+			</view>
+			<view class="list gray-666 pos-relative white-b font-size-15 mar-bot-20" style="	padding-top: 1px; padding-bottom: 1px; padding-left: 0;">
+				<template wx:if="!share_grade_id">
+					<view class=" height-40 font-size-16 pad-lef-16 pad-rig-16 pad-top-10 pad-bot-10" catchtap='changePayImage($event)'>
+						<span class="fl">可用积分抵扣 <span class="red">{{ Number(exchange_price2).toFixed(2) }}</span> 元</span>
+						<image style="width: 48px; height: 24px; " class="fr" src="{{payPicture3}}" mode="widthFix"></image>
+					</view>
+				</template>
+				<view class=" height-40 font-size-16 pad-lef-16 pad-rig-16 pad-top-10 pad-bot-10">
+					<span class="fl">微信支付</span>
+					<image style="width: 48px; height: 24px; " class="fr" src="{{payPicture}}" mode="widthFix"></image>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="pos-fixed width-100per height-42 white-b" style="bottom: 0; left: 0; ">
+		<view class="fl tl pos-relative per-line-42 pad-lef-20 font-size-15" style="width: 66.6%;">
+			实付: <span class="red">￥{{ Number(real_fee).toFixed(2) }}</span>
+		</view>
+		<view class="white fl red-b tc per-line-42 font-size-16" style="width: 33.3%;" catchtap="buyGoods">提交</view>
+	</view>
+<!-- 	<mu-dialog :open="dialog2" title="留言" @close="closeDialog">
+		<textarea class="width-100per" wx:value="leaveMessage" maxlength="45" rows="4" type="text" placeholder="选填:给商家留言(45字以内)" name=""></textarea>
+		<mu-flat-button slot="actions" catchtap="closeDialog" primary label="删除留言"/>
+		<mu-flat-button slot="actions" primary catchtap="getLeaveMessage" label="确定"/>
+	</mu-dialog> -->
+</view>

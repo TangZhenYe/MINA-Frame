@@ -1,0 +1,14 @@
+.types-box .normal {
+	color: #000;
+}
+
+.types-box .is-clicked {
+	color: #f00;
+}
+.left-category .normal {
+	color: #000;
+}
+
+.left-category .is-clicked {
+	color: #f00;
+}

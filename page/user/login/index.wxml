@@ -1,0 +1,40 @@
+<!-- 公共dialog -->
+<import src="/components/dialog/dialog.wxml" />
+<template is="dialog" data="{{ ..._dialog }}"></template>
+<!-- 公共dialog -->
+
+<view class="">
+	<view class="pad-lef-30 pad-rig-30 pos-relative" style="margin-top: 80px; ">
+		<view class="per-line-40 border-bottom-1 font-size-15">
+			<input value="{{post.loginname}}" class="input-cus per-line-30 width-100per" type="text" placeholder="用户名/邮箱/手机号"/>
+		</view>
+		<view class="per-line-40 border-bottom-1 mar-top-20 font-size-15">
+			<input value="{{post.password}}" class="fl input-cus per-line-30 mar-top-5 width-70per" type="number" placeholder="请输入密码"/><view class="width-30per font-size-14 tr fr">| 忘记密码</view>
+		</view>
+		<view class="per-line-40 mar-top-50 tc white yellow-b" style="border-radius: 20px;">登录</view>
+		<view class="font-size-12 per-line-30 mar-top-20 over-hidden">
+			<span catchtap='goregister' class="fr">新用户注册</span>
+			<span class="fl">短信验证码登录</span>
+		</view>
+	</view>
+	<view class="pos-absolute over-hidden" style="bottom: 0px; left: 30px; right: 30px;">
+		<view class="per-line-30 tc pos-relative gray-666">
+			————其他登录方式————
+		</view>
+		<view class="over-hidden mar-top-20 gray-666">
+			<view class="width-50per fl tc">
+				<view style="width: 40px; height: 40px; margin: 0 auto; background-color: rgb(225, 239, 209); border-radius: 50%;">
+					<image style="width: 20px; height: 20px; margin-top: 10px;" src="../../../static/images/weixin.png"></image>
+				</view>
+				<view class="tc font-size-12">微信登录</view>
+			</view>
+			<view class="width-50per fl tc">
+				<view style="width: 40px; height: 40px; background-color: rgb(209, 238, 239); margin: 0 auto; border-radius: 50%;">
+					<image style="width: 20px; height: 20px; margin-top: 10px;" src="../../../static/images/qq.png"></image>
+				</view>
+				<view class="tc font-size-12">QQ登录</view>
+			</view>
+		</view>
+		<view class="tc font-size-12 gray-666 mar-top-15">登录即代表您已同意《隐私政策》</view>
+	</view>
+</view>

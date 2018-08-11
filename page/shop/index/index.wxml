@@ -1,0 +1,62 @@
+<!-- 公共dialog -->
+<import src="/components/dialog/dialog.wxml" />
+<template is="dialog" data="{{ ..._dialog }}"></template>
+<!-- 公共dialog -->
+
+<view class="page">
+	<view style="top: 0; left: 0;" class="width-100per z-index-9999 yellow-b pos-fixed white over-hidden per-line-40 pad-lef-15 pad-rig-15">
+		<view class="fl per-line-30 mar-top-5 width-80per pos-relative" style="border-bottom: thin solid white;">
+			<image src="../../../static/images/search.png" class="pos-absolute" style="width: 20px; height: 20px; top: 5px; vertical-align: middle;"></image>
+			<input type="text" placeholder-style="color: #fff;" placeholder="搜索商品" class="per-line-30 width-100per pad-lef-25" />
+		</view>
+		<view class="fr per-line-30 mar-top-5">
+			<image style="width: 30px; height: 30px; vertical-align: middle;" src="../../../static/images/scan.png"></image>
+		</view>
+	</view>	
+	<!-- 轮播图 -->
+	<swiper style="height: 200px;" class="mar-top-40" indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorColor}}" autoplay="{{autoplay}}" indicator-active-color="{{indicatorActiveColor}}" interval="{{interval}}" duration="{{duration}}">
+		<swiper-item wx:key="index" wx:for="{{swiperLists}}">
+			<view class="width-100per height-200" style="background-image: url({{item.img_thumb || default_image}}); background-size: cover;"></view>
+		</swiper-item>
+	</swiper>
+	<!-- 所有分类 -->
+	<swiper class="mar-top-15 height-200 white-b" indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorColor}}" autoplay="{{autoplay}}" indicator-active-color="{{indicatorActiveColor}}" interval="{{interval}}" duration="{{duration}}">
+		<swiper-item wx:for-index="n" wx:key="n" wx:for="{{emptyListsForCategory}}">
+			<view class="width-100per pad-top-15 white-b over-hidden">
+				<view catchtap="goCategoryIndex" data-cate_id="{{item.cate_id}}" class="width-25per mar-bot-10 over-hidden tc fl height-80 " wx:for-index="i" wx:key="i" wx:for="{{categoryLists}}" wx:if="{{i >= n * 8 && i < (n+1) * 8}}">
+					<image style="width: 50px; height: 50px;" src="{{item.img_thumb || default_image}}"></image>
+					<view>{{item.cat_name}}</view>
+				</view>
+			</view>
+		</swiper-item>
+	</swiper>
+	<!-- 广告图片 s -->
+	<view class="mar-top-15 over-hidden">
+		<view wx:key='{{index}}' class="fl {{index > 1 ? 'mar-top-10' : ''}} width-49per {{index % 2 === 0 ? 'fl' : 'fr'}}" wx:for="{{adLists}}">
+			<image class="width-100per" mode="widthFix" src="{{item.img_thumb || default_image}}"></image>
+		</view>
+	</view>
+	<!-- 广告图片 e -->
+	<!-- 热卖推荐 -->
+	<view class="white-b pad-10 over-hidden">
+		<view class="per-line-30">
+			<view class="font-size-18 black fl">热卖推荐</view>
+			<view class="gray-666 font-size-14 fr">更多>></view>
+		</view>
+		<!-- 推荐列表 -->
+		<view class="width-100per tc over-hidden mar-top-15">
+			<view catchtap="goShopDetail" class="width-49per mar-bot-10 {{index % 2 === 0 ? 'fl' : 'fr'}}" wx:key="index" data-goods_id="{{item.goods_id}}" wx:for="{{shopLists}}">
+				<image style="width: 100%; height: 150px;" src="{{item.img_thumb || default_image}}"></image>
+				<view class="ellip tl">{{item.goods_name}}</view>
+				<view class="over-hidden per-line-30">
+					<view class="fl red font-size-12">￥{{item.shop_price}}</view>
+					<view class="fr gray-666 font-size-12">已售: {{item.sell_number}}</view>
+				</view>
+			</view>
+		</view>
+		<!-- 加载更多 -->
+		<view class="gray-666 per-line-30 tc font-size-14">
+			查看更多商品
+		</view>
+	</view>
+</view>

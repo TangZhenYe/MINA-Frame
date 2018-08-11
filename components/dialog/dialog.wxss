@@ -1,0 +1,16 @@
+.dialog-box {
+  position: fixed;
+  z-index: 99999;
+  min-width: 220px;
+  padding: 20px 0px;
+  white-space: nowrap;
+  background-color: rgba(0,0,0,.5);
+  color: #fff;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 16px;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

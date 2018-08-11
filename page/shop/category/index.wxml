@@ -1,0 +1,52 @@
+<!-- 公共dialog -->
+<import src="/components/dialog/dialog.wxml" />
+<template is="dialog" data="{{ ..._dialog }}"></template>
+<!-- 公共dialog -->
+
+<view class="page">
+
+	<view style="top: 0; left: 0;" class="width-100per z-index-9999 yellow-b pos-fixed white over-hidden per-line-40 pad-lef-15 pad-rig-15">
+		<view class="fl per-line-30 mar-top-5 width-80per pos-relative" style="border-bottom: thin solid white;">
+			<image src="../../../static/images/search.png" class="pos-absolute" style="width: 20px; height: 20px; top: 5px; vertical-align: middle;"></image>
+			<input type="text" placeholder-style="color: #fff;" placeholder="搜索商品" class="per-line-30 width-100per pad-lef-25" />
+		</view>
+		<view class="fr per-line-30 mar-top-5">
+			<image style="width: 30px; height: 30px; vertical-align: middle;" src="../../../static/images/scan.png"></image>
+		</view>
+	</view>	
+
+	<view class="width-100per mar-top-40 over-hidden tc per-line-50 types-box">
+		<view wx:key="index" class="width-25per fl" catchtap="changeType" wx:for="{{types}}" data-id="{{index}}">
+			<view class="{{typesId === index ? 'is-clicked' : 'normal'}}">{{item}}</view>
+		</view>
+		<view catchtap="changeType" data-id="3" class="width-25per fl per-line-50">
+			<image src="{{typesId === '3' ? '../../../static/images/category_on.png' : '../../../static/images/category.png'}}" style="vertical-align: middle;" class="width-80per height-30" mode="aspectFit"></image>
+		</view>
+	</view>
+	<view wx:if="{{typesId === '3'}}" class="white-b over-hidden pos-absolute width-100per" style="left: 0; top: 50px; bottom: 0; overflow-y: scroll;">
+		<view class='width-25per border-right-1 fl tc left-category' style="box-sizing: border-box; min-height: 600px;">
+			<view wx:key="{{item.cate_id}}" data-cate_id="{{item.cate_id}}" catchtap="changeLeftCategory" class="per-line-50 {{leftCategoryId === item.cate_id ? 'is-clicked' : 'normal'}}" wx:for="{{categoryLists}}">{{item.cat_name}}</view>
+		</view>
+		<view class="width-75per white-b pad-top-10 fl" scroll-y="true">
+			<view wx:key="{{index}}" class="tc width-49per {{(index % 2 === 0) ? 'fl' : 'fr'}}" wx:for="{{selectLists}}">
+				<image src="{{item.img_thumb || default_image}}" style="width: 100px; height: 100px;"></image>
+				<view class="per-line-30 ellip">{{item.goods_name}}</view>
+			</view>
+		</view>
+	</view>
+
+
+	<view wx:else class="pad-lef-10 pad-rig-10 white-b pad-top-10 over-hidden">
+		<view class="width-100per tc over-hidden">
+			<view data-goods_id="{{item.goods_id}}" catchtap="goShopDetail" class="width-49per mar-bot-10 {{index % 2 === 0 ? 'fl' : 'fr'}}" wx:key="index" wx:for="{{shopLists}}">
+				<image style="width: 100%; height: 150px;" src="{{item.img_thumb || default_image}}"></image>
+				<view class="ellip tl">{{item.goods_name}}</view>
+				<view class="over-hidden per-line-30">
+					<view class="fl red font-size-12">￥{{item.shop_price}}</view>
+					<view class="fr gray-666 font-size-12">已售: {{item.sell_number}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+</view>

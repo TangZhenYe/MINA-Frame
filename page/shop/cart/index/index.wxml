@@ -1,0 +1,52 @@
+<!-- 公共dialog -->
+<import src="/components/dialog/dialog.wxml" />
+<template is="dialog" data="{{ ..._dialog }}"></template>
+<!-- 公共dialog -->
+
+<view class="page">
+	<view style="top: 0; left: 0;" class="width-100per z-index-9999 yellow-b pos-fixed white over-hidden per-line-40 pad-lef-15 pad-rig-15">
+		<view class="fl per-line-30 mar-top-5 width-80per pos-relative" style="border-bottom: thin solid white;">
+			<image src="../../../../static/images/search.png" class="pos-absolute" style="width: 20px; height: 20px; top: 5px; vertical-align: middle;"></image>
+			<input type="text" placeholder-style="color: #fff;" placeholder="搜索商品" class="per-line-30 width-100per pad-lef-25" />
+		</view>
+		<view class="fr per-line-30 mar-top-5">
+			<image style="width: 30px; height: 30px; vertical-align: middle;" src="../../../../static/images/scan.png"></image>
+		</view>
+	</view>	
+
+	<view class="white-b border-bottom-1 z-index-9999 pos-fixed width-100per" style="top: 40px; left: 0;">
+		<view class="gray-666 tl per-line-38 pos-relative">
+			<view class="pos-absolute" style='width: 20px; height: 20px; left: 15px; top: 9px;'>
+				<image src='{{gou}}' class="check-box {{allIsBlackColor ? 'black-b' : 'white-b'}} border-1 pos-absolute border-rad-50per" style='width: 20px; height: 20px; top: 0; left: 0; box-sizing: border-box;' data-t="{{allIsBlackColor ? 'b' : 'w'}}" data-str="all" catchtap="check"></image>
+			</view>
+			<view class="fl mar-lef-50">全选</view>
+			<view catchtap="goDeleteGoods" class="pos-absolute" style="right: 15px; top: 0; ">删除</view>
+		</view>	
+	</view>
+	<view class="white-b pos-relative mar-bot-42" style="margin-top: 80px;">
+		<view class="height-100 border-bottom-1 pos-relative pad-top-10 pad-bot-10" wx:key="{{item.cart_id}}" wx:for="{{cartLists}}">
+			<view class='pos-absolute' style='width: 20px; height: 20px; left: 15px; top: 40px;'>
+				<image src='{{gou}}' class="{{item.perIsBlackColor ? 'black-b' : 'white-b'}} pos-absolute border-1 black-b border-rad-50per" style='width: 20px; height: 20px; top: 0; left: 0; box-sizing: border-box;' data-t="{{item.perIsBlackColor ? 'b'+item.cart_id : 'w'+item.cart_id}}" data-str="per" data-cart_id="{{item.cart_id}}" catchtap="check"></image>
+			</view>
+			<image class="border-rad-5 fl border-1 mar-lef-50" style="width: 80px; height: 80px;" src="{{ item.img_thumb || default_image }}"></image>
+			<view class="fl mar-lef-10">
+				<view class="tl ellip font-size-15">{{ item.goods_name }}</view>
+				<view class="tl red font-size-14">￥{{ item.price }}</view>
+			</view>
+			<view class="pos-absolute tc" style="right: 15px; bottom: 10px;">
+				<view catchtap='subNum' data-amount="{{item.amount}}" data-cart_id="{{item.cart_id}}" style="width: 24px;" class="fl border-1 per-line-24">-</view>
+				<view class="fl border-1 per-line-24" style="width: 44px;">{{ item.amount }}</view>
+				<view catchtap='addNum' data-amount="{{item.amount}}" data-cart_id="{{item.cart_id}}" style="width: 24px;" class="fl border-1 per-line-24">+</view>
+			</view>
+		</view>
+	</view>
+	<view class="bottom-box width-100per white-b pos-fixed height-42" style="bottom: 0;">
+		<view class="fl tl pos-relative width-70per">
+			<view class="per-line-42 pad-lef-15 font-size-15">
+				<view class="fl">商品总金额</view>
+				<view class="red fl">￥{{ Number(totalCount).toFixed(2) }}</view>
+			</view>
+		</view>	
+		<view class="white fl tc per-line-42 font-size-16 red-b width-30per" catchtap="goBuy">立即购买</view>
+	</view>
+</view>

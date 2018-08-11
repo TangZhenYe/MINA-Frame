@@ -1,0 +1,57 @@
+{
+	"pages":	[
+		"page/user/index/index",
+		"page/shop/category/index",
+		"page/shop/index/index",
+		"page/user/register/index",
+		"page/user/login/index",
+		"page/shop/detail/index",
+		"page/shop/cart/index/index",
+		"page/shop/cart/confirmOrder/index"
+	],
+	"window":{
+		"navigationStyle": "custom"
+	},
+	"debug": true,
+	"networkTimeout": {
+		"request": 10000,
+		"downloadFile": 10000
+	},
+	"tabBar": {
+		"color": "#666",
+		"selectedColor": "#000",
+		"backgroundColor": "#fff",
+		"list": [
+			{
+				"pagePath": "page/shop/index/index",
+				"selectedIconPath": "/static/images/main_home_on.png",
+				"iconPath": "/static/images/main_home.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "page/shop/category/index",
+				"selectedIconPath": "/static/images/main_classify_on.png",
+				"iconPath": "/static/images/main_classify.png",
+				"text": "分类"
+			},
+			{
+				"pagePath": "page/shop/index/index",
+				"selectedIconPath": "/static/images/main_integral_on.png",
+				"iconPath": "/static/images/main_integral.png",
+				"text": "积分模块"
+			},
+			{
+				"pagePath": "page/shop/cart/index/index",
+				"selectedIconPath": "/static/images/main_shoping_on.png",
+				"iconPath": "/static/images/main_shoping.png",
+				"text": "购物车"
+			},
+			{
+				"pagePath": "page/user/index/index",
+				"selectedIconPath": "/static/images/main_myself_on.png",
+				"iconPath": "/static/images/main_myself.png",
+				"text": "我的"
+			}
+		]
+	}
+}

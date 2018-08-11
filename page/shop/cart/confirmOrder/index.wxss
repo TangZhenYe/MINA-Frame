@@ -1,0 +1,11 @@
+.cart_confirmOrder {
+	bottom: 44px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	background-color: #F3F5F7;
+	overflow-y: scroll;
+	touch-action: pan-y;
+	-webkit-overflow-scrolling: touch;
+}

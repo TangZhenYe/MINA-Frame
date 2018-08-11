@@ -1,0 +1,14 @@
+.types-box .normal {
+	color: #000;
+}
+.types-box .active {
+	color: #f00;
+}
+.interview-box .normal {
+	color: #000;
+	border-bottom: 1px solid #ccc;
+}
+.interview-box .active {
+	color: #f00;
+	border-bottom: 1px solid #f00;
+}
